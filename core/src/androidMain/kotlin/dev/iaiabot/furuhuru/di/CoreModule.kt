@@ -15,6 +15,14 @@ import dev.iaiabot.furuhuru.usecase.user.SaveUsernameUseCaseImpl
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
+fun coreModules() = listOf(
+    apiModule,
+    repositoryModule,
+    useCaseModule,
+    utilModule,
+    dataModule,
+)
+
 internal val apiModule = module {
     single<GithubService> { GithubService() }
 }
