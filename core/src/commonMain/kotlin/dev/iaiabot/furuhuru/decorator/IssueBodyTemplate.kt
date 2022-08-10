@@ -5,9 +5,9 @@ object IssueBodyTemplate {
     const val USERS_BODY = "USERS_BODY"
     const val APP_NAME = "APP_NAME"
     const val APP_VERSION = "APP_VERSION"
-    const val DEVICE_VERSION = "DEVICE_VERSION"
+    const val DEVICE = "DEVICE_DEVICE_DEVICE"
     const val DEVICE_OS = "DEVICE_OS"
-    const val Furuhuru_VERSION_NAME = "Furuhuru_VERSION_NAME"
+    const val FURUHURU_VERSION_NAME = "FURUHURU_VERSION_NAME"
     const val IMAGE_URL = "IMAGE_URL"
     const val IMAGE_FILE_URL = "IMAGE_FILE_URL"
 
@@ -29,8 +29,8 @@ $USERS_BODY
 |User Name|$USER_NAME|
 |App Name|$APP_NAME|
 |App Version|$APP_VERSION|
-|Device|$DEVICE_VERSION|
+|Device|$DEVICE|
 |Device OS|$DEVICE_OS|
-|Furuhuru Version|$Furuhuru_VERSION_NAME|
+|Furuhuru Version|$FURUHURU_VERSION_NAME|
 """
 }
