@@ -27,9 +27,8 @@ private val androidModule = module {
     }
 }
 
-internal fun diModules() = listOf(
+internal val diModules = listOf(
     viewModelModule,
     androidModule,
-    coreModules,
     coreAndroidModule,
-)
+) + coreModules

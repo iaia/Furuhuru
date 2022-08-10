@@ -86,7 +86,7 @@ class Furufuru private constructor(
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(application)
-            modules(diModules())
+            modules(diModules)
         }
     }
 

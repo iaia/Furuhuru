@@ -2,7 +2,6 @@ package dev.iaiabot.furuhuru.datasource.local
 
 import android.util.LruCache
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.internal.synchronized
 
 internal actual class ScreenshotDataSourceImpl(
     private val cache: LruCache<String, String>
