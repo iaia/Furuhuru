@@ -17,11 +17,15 @@ internal class GithubService(
     githubApiToken: String
 ) {
     companion object {
-        private const val TIMEOUT_MILLI_SEC = 10_000L
+        private const val TIMEOUT_MILLI_SEC = 20_000L
     }
 
     private val client = HttpClient(CIO) {
-        install(HttpTimeout)
+        install(HttpTimeout) {
+            requestTimeoutMillis = TIMEOUT_MILLI_SEC
+            connectTimeoutMillis = TIMEOUT_MILLI_SEC
+            socketTimeoutMillis = TIMEOUT_MILLI_SEC
+        }
         install(ContentNegotiation) {
             json(
                 Json {
