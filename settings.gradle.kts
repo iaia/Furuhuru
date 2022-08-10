@@ -9,3 +9,4 @@ pluginManagement {
 rootProject.name = "Furuhuru"
 include(":androidFuruhuru")
 include(":core")
+include(":exampleandroid")
