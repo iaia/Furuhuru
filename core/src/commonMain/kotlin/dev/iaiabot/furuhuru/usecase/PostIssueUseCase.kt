@@ -1,8 +1,5 @@
 package dev.iaiabot.furuhuru.usecase
 
-import dev.iaiabot.furuhuru.datasource.github.request.Content
-import dev.iaiabot.furuhuru.datasource.github.request.Issue
-import dev.iaiabot.furuhuru.datasource.local.GithubSettings
 import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate
 import dev.iaiabot.furuhuru.entity.ContentImageUrls
 import dev.iaiabot.furuhuru.repository.ContentRepository
@@ -24,7 +21,7 @@ internal class PostIssueUseCaseImpl(
     private val issueRepository: IssueRepository,
     private val screenshotRepository: ScreenshotRepository,
     private val contentRepository: ContentRepository,
-    private val githubSettings: GithubSettings,
+    private val githubSettings: dev.iaiabot.furuhuru.datasource.local.GithubSettings,
     private val saveUsernameUseCase: SaveUsernameUseCase,
 ) : PostIssueUseCase {
 
@@ -43,7 +40,7 @@ internal class PostIssueUseCaseImpl(
 
         val imageUrls = uploadScreenShot() ?: throw Exception("failed to upload screenshot")
 
-        val issue = Issue(
+        val issue = dev.iaiabot.furuhuru.datasource.github.request.Issue(
             title,
             IssueBodyTemplate.createBody(
                 userName ?: "",
@@ -67,7 +64,7 @@ internal class PostIssueUseCaseImpl(
         if (screenshot.isNullOrEmpty()) {
             throw Exception("no screenshot")
         }
-        val content = Content(
+        val content = dev.iaiabot.furuhuru.datasource.github.request.Content(
             content = screenshot,
             branch = githubSettings.furufuruBranch
         )

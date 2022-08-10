@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.iaiabot.furuhuru.datasource.local.GithubSettings
 import dev.iaiabot.furuhuru.usecase.GetScreenShotUseCase
 import dev.iaiabot.furuhuru.usecase.PostIssueUseCase
 import dev.iaiabot.furuhuru.usecase.user.LoadUserNameUseCase
@@ -31,7 +30,7 @@ internal abstract class IssueViewModel : ViewModel() {
 
 internal class IssueViewModelImpl(
     private val loadUserNameUseCase: LoadUserNameUseCase,
-    private val githubSettings: GithubSettings,
+    private val githubSettings: dev.iaiabot.furuhuru.datasource.local.GithubSettings,
     private val postIssueUseCase: PostIssueUseCase,
     getScreenShotUseCase: GetScreenShotUseCase,
 ) : IssueViewModel() {

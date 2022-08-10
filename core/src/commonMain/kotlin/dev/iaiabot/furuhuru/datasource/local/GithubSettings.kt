@@ -11,7 +11,8 @@ class GithubSettings {
         private set
     var githubRepository: String = ""
         private set
-    var furufuruBranch: String = DEFAULT_FURUFURU_BRANCH
+    var furufuruBranch: String =
+        dev.iaiabot.furuhuru.datasource.local.GithubSettings.Companion.DEFAULT_FURUFURU_BRANCH
         private set
 
     // TODO: Listにしたい
