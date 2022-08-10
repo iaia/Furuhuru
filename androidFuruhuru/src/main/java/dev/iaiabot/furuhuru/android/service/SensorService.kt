@@ -15,9 +15,9 @@ import android.os.Build
 import android.os.IBinder
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import dev.iaiabot.furuhuru.android.Furufuru
+import dev.iaiabot.furuhuru.android.Furuhuru
 import dev.iaiabot.furuhuru.android.issue.IssueActivity
-import dev.iaiabot.furuhuru.android.notification.FurufuruNotification
+import dev.iaiabot.furuhuru.android.notification.FuruhuruNotification
 import kotlin.math.sqrt
 
 internal class SensorService : Service() {
@@ -82,16 +82,16 @@ internal class SensorService : Service() {
     private fun startNotification() {
         val notificationManager =
             ContextCompat.getSystemService(this, NotificationManager::class.java) ?: return
-        FurufuruNotification.createNotificationChannel(notificationManager)
+        FuruhuruNotification.createNotificationChannel(notificationManager)
 
         startForeground(
             1,
-            FurufuruNotification.createSensorNotification(applicationContext)
+            FuruhuruNotification.createSensorNotification(applicationContext)
         )
     }
 
     private fun openIssue() {
-        Furufuru.takeScreenshot()
+        Furuhuru.takeScreenshot()
         startActivity(
             IssueActivity.createIntent(this).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK

@@ -1,12 +1,12 @@
 package dev.iaiabot.furuhuru.exampleandroid
 
 import android.app.Application
-import dev.iaiabot.furuhuru.android.Furufuru
+import dev.iaiabot.furuhuru.android.Furuhuru
 
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Furufuru.Builder(
+        Furuhuru.Builder(
             this,
         ).settingGithub(
             BuildConfig.GITHUB_API_TOKEN,

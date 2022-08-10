@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import dev.iaiabot.furuhuru.android.Furufuru
+import dev.iaiabot.furuhuru.android.Furuhuru
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 internal class IssueActivity : AppCompatActivity() {
@@ -21,9 +21,9 @@ internal class IssueActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Furufuru.takeScreenshot()
+        Furuhuru.takeScreenshot()
         setContent {
-            FurufuruScreen(model)
+            FuruhuruScreen(model)
         }
 
         observeViewModel()

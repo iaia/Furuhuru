@@ -11,7 +11,7 @@ import dev.iaiabot.furuhuru.android.service.SensorService
 import dev.iaiabot.furuhuru.android.utils.screenshot.ScreenShotter
 import org.koin.java.KoinJavaComponent.inject
 
-internal class FurufuruLifecycleCallback : Application.ActivityLifecycleCallbacks {
+internal class FuruhuruLifecycleCallback : Application.ActivityLifecycleCallbacks {
     private var sensorServiceConnection = SensorService.Connection()
     private val screenShotter: ScreenShotter by inject(ScreenShotter::class.java)
 

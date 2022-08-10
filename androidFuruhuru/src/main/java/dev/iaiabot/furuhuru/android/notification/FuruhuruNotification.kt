@@ -14,9 +14,9 @@ import androidx.core.graphics.drawable.IconCompat
 import dev.iaiabot.furuhuru.android.R
 import dev.iaiabot.furuhuru.android.issue.IssueActivity
 
-internal object FurufuruNotification {
+internal object FuruhuruNotification {
     enum class Channels(val channelId: String, val channelName: String) {
-        FURUFURU("_FURUFURU_CHANNEL", "Furufuru"),
+        Furuhuru("_Furuhuru_CHANNEL", "Furuhuru"),
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -41,9 +41,9 @@ internal object FurufuruNotification {
     fun createSensorNotification(context: Context): Notification {
         val contentIntent = createContentIntent(context)
         return NotificationCompat
-            .Builder(context, Channels.FURUFURU.channelId)
-            .setSmallIcon(R.drawable.ic_send) // TODO: furufuruのアイコン作る
-            .setContentTitle("Furufuru is running")
+            .Builder(context, Channels.Furuhuru.channelId)
+            .setSmallIcon(R.drawable.ic_send) // TODO: Furuhuruのアイコン作る
+            .setContentTitle("Furuhuru is running")
             .setContentIntent(contentIntent) // 二重に設定する?
             .setCategory(Notification.CATEGORY_CALL)
             .apply {

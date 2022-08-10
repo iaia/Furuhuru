@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class Content(
     @Required
-    val message: String = "[ci skip] Upload furufuru image",
+    val message: String = "[ci skip] Upload Furuhuru image",
     @Required
     val content: String,
     val sha: String? = null,

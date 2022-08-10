@@ -72,7 +72,7 @@ internal class PostIssueUseCaseImpl(
         }
         val content = Content(
             content = screenshot,
-            branch = githubSettings.furufuruBranch
+            branch = githubSettings.FuruhuruBranch
         )
         try {
             val result = contentRepository.post(content, generateUploadDestinationPath())

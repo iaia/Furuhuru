@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.flow
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-internal fun FurufuruScreen(
+internal fun FuruhuruScreen(
     viewModel: IssueViewModel
 ) {
     val title: String by viewModel.title.observeAsState("")
@@ -28,23 +28,23 @@ internal fun FurufuruScreen(
         bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
     )
 
-    FurufuruTheme {
+    FuruhuruTheme {
         BottomSheetScaffold(
             scaffoldState = bottomSheetScaffoldState,
             sheetContent = {
                 Column(Modifier.fillMaxWidth()) {
-                    FurufuruTextField(
+                    FuruhuruTextField(
                         text = title,
                         label = "issue title",
                         onChange = { viewModel.onTitleChange(it) },
                     )
-                    FurufuruTextField(
+                    FuruhuruTextField(
                         text = body,
                         label = "body",
                         multiline = true,
                         onChange = { viewModel.onBodyChange(it) },
                     )
-                    FurufuruTextField(
+                    FuruhuruTextField(
                         text = userName,
                         label = "user name",
                         onChange = { viewModel.onUserNameChange(it) },
@@ -65,13 +65,13 @@ internal fun FurufuruScreen(
 
 @Preview
 @Composable
-fun FurufuruScreenPreview() {
-    FurufuruScreen(
-        viewModel = FakeFurufuruViewModel()
+fun FuruhuruScreenPreview() {
+    FuruhuruScreen(
+        viewModel = FakeFuruhuruViewModel()
     )
 }
 
-private class FakeFurufuruViewModel : IssueViewModel() {
+private class FakeFuruhuruViewModel : IssueViewModel() {
     override val title: LiveData<String> = MutableLiveData()
     override val body: LiveData<String> = MutableLiveData()
     override val userName: LiveData<String> = MutableLiveData()

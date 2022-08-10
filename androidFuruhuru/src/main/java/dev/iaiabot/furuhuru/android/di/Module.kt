@@ -2,7 +2,7 @@ package dev.iaiabot.furuhuru.android.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import dev.iaiabot.furuhuru.android.Furufuru
+import dev.iaiabot.furuhuru.android.Furuhuru
 import dev.iaiabot.furuhuru.android.issue.IssueViewModel
 import dev.iaiabot.furuhuru.android.issue.IssueViewModelImpl
 import dev.iaiabot.furuhuru.android.utils.screenshot.ScreenShotter
@@ -23,14 +23,14 @@ private val androidModule = module {
     single { ScreenShotter(get()) }
     single<SharedPreferences> {
         androidApplication().getSharedPreferences(
-            "furufuru",
+            "Furuhuru",
             Context.MODE_PRIVATE
         )
     }
     single {
         ApplicationInfo(
-            Furufuru.getApplicationName(),
-            Furufuru.getAppVersionName(),
+            Furuhuru.getApplicationName(),
+            Furuhuru.getAppVersionName(),
         )
     }
 }

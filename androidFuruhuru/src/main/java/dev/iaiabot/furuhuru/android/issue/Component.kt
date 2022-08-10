@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun FurufuruTextField(
+fun FuruhuruTextField(
     text: String,
     label: String,
     multiline: Boolean = false,
@@ -101,9 +101,9 @@ fun IssueLabels() {
 
 @Composable
 @Preview
-fun FurufuruTextFieldPreview() {
-    FurufuruTextField(
-        label = "furufuru text",
+fun FuruhuruTextFieldPreview() {
+    FuruhuruTextField(
+        label = "Furuhuru text",
         text = "foo bar",
         onChange = { },
     )
@@ -111,9 +111,9 @@ fun FurufuruTextFieldPreview() {
 
 @Composable
 @Preview
-fun FurufuruTextFieldMultilinePreview() {
-    FurufuruTextField(
-        label = "furufuru text",
+fun FuruhuruTextFieldMultilinePreview() {
+    FuruhuruTextField(
+        label = "Furuhuru text",
         text = "foo bar",
         multiline = true,
         onChange = { }

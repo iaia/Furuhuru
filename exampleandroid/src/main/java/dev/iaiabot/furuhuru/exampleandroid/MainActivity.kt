@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContent {
             MaterialTheme {
                 val navController = rememberNavController()
-                val applicationInfo = ApplicationInfo("furufuru_example", "12.345")
+                val applicationInfo = ApplicationInfo("Furuhuru_example", "12.345")
 
                 NavHost(navController = navController, startDestination = "first") {
                     composable("first") {

@@ -10,7 +10,7 @@ private val DarkColors = darkColors()
 private val LightColors = lightColors()
 
 @Composable
-fun FurufuruTheme(
+fun FuruhuruTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {

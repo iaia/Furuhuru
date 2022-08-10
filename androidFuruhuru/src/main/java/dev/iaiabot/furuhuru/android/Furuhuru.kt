@@ -3,7 +3,7 @@ package dev.iaiabot.furuhuru.android
 import android.app.Application
 import android.content.pm.PackageInfo
 import dev.iaiabot.furuhuru.android.di.diModules
-import dev.iaiabot.furuhuru.android.utils.lifecycle.FurufuruLifecycleCallback
+import dev.iaiabot.furuhuru.android.utils.lifecycle.FuruhuruLifecycleCallback
 import dev.iaiabot.furuhuru.datasource.local.GithubSettings
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -11,7 +11,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.java.KoinJavaComponent.inject
 
-class Furufuru private constructor(
+class Furuhuru private constructor(
     private val application: Application,
 ) {
 
@@ -21,19 +21,19 @@ class Furufuru private constructor(
         private var githubApiToken: String? = null
         private var githubReposOwner: String? = null
         private var githubRepository: String? = null
-        private var furufuruBranch: String? = null
+        private var FuruhuruBranch: String? = null
         private var labels: List<String> = emptyList()
 
         fun settingGithub(
             githubApiToken: String,
             githubReposOwner: String,
             githubRepository: String,
-            furufuruBranch: String? = null
+            FuruhuruBranch: String? = null
         ): Builder {
             this.githubApiToken = githubApiToken
             this.githubReposOwner = githubReposOwner
             this.githubRepository = githubRepository
-            this.furufuruBranch = furufuruBranch
+            this.FuruhuruBranch = FuruhuruBranch
             return this
         }
 
@@ -42,14 +42,14 @@ class Furufuru private constructor(
             return this
         }
 
-        fun build(): Furufuru {
+        fun build(): Furuhuru {
             // TODO: すでにあるinstance破棄して新しく作り直したい
             val instance = getInstance(application) ?: throw Exception()
             instance.githubSettings.init(
                 githubApiToken = githubApiToken ?: "",
                 githubReposOwner = githubReposOwner ?: "",
                 githubRepository = githubRepository ?: "",
-                furufuruBranch = furufuruBranch,
+                FuruhuruBranch = FuruhuruBranch,
             )
             instance.githubSettings.addLabels(labels)
             instance.start()
@@ -58,7 +58,7 @@ class Furufuru private constructor(
     }
 
     companion object {
-        private var instance: Furufuru? = null
+        private var instance: Furuhuru? = null
 
         internal fun getAppVersionName() = getInstance()?.getApplicationVersion()
 
@@ -68,10 +68,10 @@ class Furufuru private constructor(
             getInstance()?.takeScreenshot()
         }
 
-        private fun getInstance(application: Application? = null): Furufuru? {
+        private fun getInstance(application: Application? = null): Furuhuru? {
             if (instance == null) {
                 application?.let {
-                    instance = Furufuru(application)
+                    instance = Furuhuru(application)
                 }
             }
             return instance
@@ -79,8 +79,8 @@ class Furufuru private constructor(
     }
 
     private val githubSettings: GithubSettings by inject(GithubSettings::class.java)
-    private val applicationLifecycleCallbacks: FurufuruLifecycleCallback =
-        FurufuruLifecycleCallback()
+    private val applicationLifecycleCallbacks: FuruhuruLifecycleCallback =
+        FuruhuruLifecycleCallback()
 
     init {
         startKoin {

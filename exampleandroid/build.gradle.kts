@@ -46,7 +46,7 @@ android {
 
 dependencies {
     // 試すとき用
-    //debugImplementation("dev.iaiabot.furufuru:furufuru:v0.9.0")
+    //debugImplementation("dev.iaiabot.Furuhuru:Furuhuru:v0.9.0")
     implementation(project(":androidFuruhuru"))
     implementation(project(":core"))
 
