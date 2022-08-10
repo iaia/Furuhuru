@@ -2,8 +2,6 @@ package dev.iaiabot.furuhuru.di
 
 import dev.iaiabot.furuhuru.datasource.github.GithubService
 import dev.iaiabot.furuhuru.datasource.local.GithubSettings
-import dev.iaiabot.furuhuru.datasource.local.UserDataSource
-import dev.iaiabot.furuhuru.datasource.local.UserDataSourceImpl
 import dev.iaiabot.furuhuru.repository.*
 import dev.iaiabot.furuhuru.usecase.GetScreenShotUseCase
 import dev.iaiabot.furuhuru.usecase.GetScreenShotUseCaseImpl
@@ -55,14 +53,9 @@ internal val utilModule = module {
     single(named("github_api_token")) { get<GithubSettings>().githubApiToken }
 }
 
-internal val dataModule = module {
-    single<UserDataSource> { UserDataSourceImpl(get()) }
-}
-
 val coreModules = listOf(
     apiModule,
     repositoryModule,
     useCaseModule,
     utilModule,
-    dataModule,
 )
