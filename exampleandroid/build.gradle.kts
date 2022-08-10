@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -17,17 +19,20 @@ android {
     }
 
     buildTypes {
+        debug {
+            val githubApiKey: String =
+                gradleLocalProperties(rootDir).getProperty("GITHUB_API_TOKEN")
+
+            buildConfigField("String", "GITHUB_API_TOKEN", "\"" + githubApiKey + "\"")
+        }
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {

@@ -1,17 +1,11 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
 }
 
 android {
     compileSdk = 32
-    defaultConfig {
-        applicationId = "dev.iaiabot.furuhuru.android"
-        minSdk = 21
-        targetSdk = 32
-        versionCode = 1
-        versionName = "1.0"
-    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
