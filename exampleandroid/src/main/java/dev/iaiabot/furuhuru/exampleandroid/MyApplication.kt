@@ -11,7 +11,7 @@ class MyApplication : Application() {
         ).settingGithub(
             BuildConfig.GITHUB_API_TOKEN,
             "iaia",
-            "Furufuru"
+            "Furuhuru"
         ).setLabels(
             "bug", "documentation"
         ).build()

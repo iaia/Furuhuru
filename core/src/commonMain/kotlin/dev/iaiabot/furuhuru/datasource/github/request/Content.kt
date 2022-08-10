@@ -13,4 +13,3 @@ internal data class Content(
     val branch: String? = null,
     val committer: String? = null,
 )
-

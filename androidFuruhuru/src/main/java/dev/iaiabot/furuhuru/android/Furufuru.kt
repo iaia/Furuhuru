@@ -78,7 +78,7 @@ class Furufuru private constructor(
         }
     }
 
-    private val githubSettings: dev.iaiabot.furuhuru.datasource.local.GithubSettings by inject(dev.iaiabot.furuhuru.datasource.local.GithubSettings::class.java)
+    private val githubSettings: GithubSettings by inject(GithubSettings::class.java)
     private val applicationLifecycleCallbacks: FurufuruLifecycleCallback =
         FurufuruLifecycleCallback()
 

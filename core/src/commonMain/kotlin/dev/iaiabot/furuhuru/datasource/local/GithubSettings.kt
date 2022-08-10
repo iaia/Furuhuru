@@ -2,7 +2,7 @@ package dev.iaiabot.furuhuru.datasource.local
 
 class GithubSettings {
     companion object {
-        private const val DEFAULT_FURUFURU_BRANCH = "furufuru-image-branch"
+        private const val DEFAULT_FURUFURU_BRANCH = "furuhuru-image-branch"
     }
 
     var githubApiToken: String = ""
@@ -11,8 +11,7 @@ class GithubSettings {
         private set
     var githubRepository: String = ""
         private set
-    var furufuruBranch: String =
-        dev.iaiabot.furuhuru.datasource.local.GithubSettings.Companion.DEFAULT_FURUFURU_BRANCH
+    var furufuruBranch: String = DEFAULT_FURUFURU_BRANCH
         private set
 
     // TODO: Listにしたい

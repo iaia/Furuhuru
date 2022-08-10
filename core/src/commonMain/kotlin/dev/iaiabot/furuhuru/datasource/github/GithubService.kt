@@ -1,21 +1,49 @@
 package dev.iaiabot.furuhuru.datasource.github
 
+import dev.iaiabot.furuhuru.datasource.github.request.Content
 import dev.iaiabot.furuhuru.entity.ContentImageUrls
 import io.ktor.client.*
 import io.ktor.client.call.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import io.ktor.http.ContentType.Application.Json
+import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
 
-internal class GithubService {
-    private val baseUrl = "https://api.github.com"
-    private val client = HttpClient()
+internal class GithubService(
+    githubApiToken: String
+) {
+    companion object {
+        private const val TIMEOUT_MILLI_SEC = 10_000L
+    }
+
+    private val client = HttpClient(CIO) {
+        install(HttpTimeout)
+        install(ContentNegotiation) {
+            json(
+                Json {
+                    encodeDefaults = false
+                    ignoreUnknownKeys = true
+                    isLenient = true
+                }
+            )
+        }
+        defaultRequest {
+            url("https://api.github.com")
+            header("Authorization", "token $githubApiToken")
+            contentType(Json)
+        }
+    }
 
     suspend fun postIssue(
         owner: String,
         repo: String,
         issue: dev.iaiabot.furuhuru.datasource.github.request.Issue
     ): dev.iaiabot.furuhuru.datasource.github.response.IssueResponse {
-        val response = client.post("${baseUrl}/repos/${owner}/${repo}/issues") {
+        val response = client.post("repos/${owner}/${repo}/issues") {
             setBody(issue)
         }
 
@@ -25,10 +53,10 @@ internal class GithubService {
     suspend fun postContent(
         owner: String,
         repo: String,
-        content: dev.iaiabot.furuhuru.datasource.github.request.Content,
+        content: Content,
         path: String
     ): ContentImageUrls {
-        val response = client.put("${baseUrl}/repos/${owner}/${repo}/contents/${path}") {
+        val response = client.put("repos/${owner}/${repo}/contents/${path}") {
             setBody(content)
         }
         val status = response.status

@@ -1,10 +1,8 @@
 package dev.iaiabot.furuhuru.di
 
 import android.util.LruCache
-import dev.iaiabot.furuhuru.datasource.local.ScreenshotDataSource
-import dev.iaiabot.furuhuru.datasource.local.ScreenshotDataSourceImpl
-import dev.iaiabot.furuhuru.datasource.local.UserDataSource
-import dev.iaiabot.furuhuru.datasource.local.UserDataSourceImpl
+import dev.iaiabot.furuhuru.datasource.github.GithubService
+import dev.iaiabot.furuhuru.datasource.local.*
 import dev.iaiabot.furuhuru.repository.*
 import dev.iaiabot.furuhuru.usecase.GetScreenShotUseCase
 import dev.iaiabot.furuhuru.usecase.GetScreenShotUseCaseImpl
@@ -26,7 +24,7 @@ fun coreModules() = listOf(
 )
 
 internal val apiModule = module {
-    single<dev.iaiabot.furuhuru.datasource.github.GithubService> { dev.iaiabot.furuhuru.datasource.github.GithubService() }
+    single<GithubService> { GithubService(get(named("github_api_token"))) }
 }
 
 internal val repositoryModule = module {
@@ -59,8 +57,9 @@ internal val useCaseModule = module {
 }
 
 internal val utilModule = module {
-    single { dev.iaiabot.furuhuru.datasource.local.GithubSettings() }
+    single { GithubSettings() }
     single(named("ScreenShotCache")) { LruCache<String, String>(1) }
+    single(named("github_api_token")) { get<GithubSettings>().githubApiToken }
 }
 
 internal val dataModule = module {
