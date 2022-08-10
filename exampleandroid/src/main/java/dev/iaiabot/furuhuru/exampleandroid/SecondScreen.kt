@@ -13,10 +13,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NavController
 import dev.iaiabot.furuhuru.decorator.IssueBodyBuilder
+import dev.iaiabot.furuhuru.entity.ApplicationInfo
 
 @Composable
 fun SecondScreen(
     navController: NavController,
+    applicationInfo: ApplicationInfo,
 ) {
     val observer = remember {
         LifecycleEventObserver { _, event ->
@@ -62,7 +64,8 @@ fun SecondScreen(
                 "",
                 "user body",
                 "image url",
-                "file url"
+                "file url",
+                applicationInfo,
             )
         )
         Button(

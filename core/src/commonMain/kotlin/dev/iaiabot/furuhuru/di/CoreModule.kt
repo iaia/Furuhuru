@@ -44,7 +44,7 @@ internal val repositoryModule = module {
 internal val useCaseModule = module {
     single<SaveUsernameUseCase> { SaveUsernameUseCaseImpl(get()) }
     single<LoadUserNameUseCase> { LoadUserNameUseCaseImpl(get()) }
-    single<PostIssueUseCase> { PostIssueUseCaseImpl(get(), get(), get(), get(), get()) }
+    single<PostIssueUseCase> { PostIssueUseCaseImpl(get(), get(), get(), get(), get(), get()) }
     single<GetScreenShotUseCase> { GetScreenShotUseCaseImpl(get()) }
 }
 

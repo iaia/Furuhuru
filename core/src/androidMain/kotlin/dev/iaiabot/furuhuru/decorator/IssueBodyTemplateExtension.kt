@@ -2,6 +2,8 @@ package dev.iaiabot.furuhuru.decorator
 
 import android.os.Build
 import dev.iaiabot.furuhuru.BuildConfig
+import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.APP_NAME
+import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.APP_VERSION
 import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.DEVICE_OS
 import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.DEVICE_VERSION
 import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.FURUFURU_VERSION_NAME
@@ -10,6 +12,7 @@ import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.IMAGE_URL
 import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.TEMPLATE
 import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.USERS_BODY
 import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.USER_NAME
+import dev.iaiabot.furuhuru.entity.ApplicationInfo
 
 actual object IssueBodyBuilder {
 
@@ -17,7 +20,8 @@ actual object IssueBodyBuilder {
         userName: String,
         usersBody: String,
         imageUrl: String?,
-        fileUrl: String?
+        fileUrl: String?,
+        applicationInfo: ApplicationInfo,
     ): String {
         var body = TEMPLATE
 
@@ -41,16 +45,9 @@ actual object IssueBodyBuilder {
 
         body = body.replace(FURUFURU_VERSION_NAME, BuildConfig.FURUHURU_VERSION)
 
-        /*
-        Furufuru.getApplicationName()?.let {
-            body = body.replace(APP_NAME, it)
-        }
+        body = body.replace(APP_NAME, applicationInfo.name ?: "unknown app name")
 
-        Furufuru.getAppVersionName()?.let {
-            body = body.replace(APP_VERSION, it)
-        }
-
-         */
+        body = body.replace(APP_VERSION, applicationInfo.version ?: "unknown app version")
 
         return body
     }

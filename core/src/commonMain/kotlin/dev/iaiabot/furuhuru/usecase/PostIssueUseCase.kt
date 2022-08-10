@@ -1,6 +1,7 @@
 package dev.iaiabot.furuhuru.usecase
 
 import dev.iaiabot.furuhuru.decorator.IssueBodyBuilder
+import dev.iaiabot.furuhuru.entity.ApplicationInfo
 import dev.iaiabot.furuhuru.entity.ContentImageUrls
 import dev.iaiabot.furuhuru.repository.ContentRepository
 import dev.iaiabot.furuhuru.repository.IssueRepository
@@ -23,6 +24,7 @@ internal class PostIssueUseCaseImpl(
     private val contentRepository: ContentRepository,
     private val githubSettings: dev.iaiabot.furuhuru.datasource.local.GithubSettings,
     private val saveUsernameUseCase: SaveUsernameUseCase,
+    private val applicationInfo: ApplicationInfo,
 ) : PostIssueUseCase {
 
     override suspend fun invoke(
@@ -46,7 +48,8 @@ internal class PostIssueUseCaseImpl(
                 userName ?: "",
                 body ?: "",
                 imageUrls.imageUrl,
-                imageUrls.fileUrl
+                imageUrls.fileUrl,
+                applicationInfo,
             ),
             labels = labels
         )
