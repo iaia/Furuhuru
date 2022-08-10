@@ -1,6 +1,6 @@
 package dev.iaiabot.furuhuru.usecase
 
-import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate
+import dev.iaiabot.furuhuru.decorator.IssueBodyBuilder
 import dev.iaiabot.furuhuru.entity.ContentImageUrls
 import dev.iaiabot.furuhuru.repository.ContentRepository
 import dev.iaiabot.furuhuru.repository.IssueRepository
@@ -42,7 +42,7 @@ internal class PostIssueUseCaseImpl(
 
         val issue = dev.iaiabot.furuhuru.datasource.github.request.Issue(
             title,
-            IssueBodyTemplate.createBody(
+            IssueBodyBuilder.build(
                 userName ?: "",
                 body ?: "",
                 imageUrls.imageUrl,

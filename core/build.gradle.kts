@@ -4,9 +4,11 @@ plugins {
     id("com.android.library")
 }
 
+apply(from = "${rootProject.projectDir}/versions.gradle.kts")
+
 kotlin {
     android()
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -79,5 +81,12 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 32
+
+        val furuhuru_version: String by project
+        buildConfigField("String", "FURUHURU_VERSION", "\"${furuhuru_version}\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }

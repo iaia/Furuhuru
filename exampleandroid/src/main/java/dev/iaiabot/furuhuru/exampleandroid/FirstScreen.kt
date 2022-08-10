@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NavController
-import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate
+import dev.iaiabot.furuhuru.decorator.IssueBodyBuilder
 
 @Composable
 fun FirstScreen(
@@ -64,7 +64,7 @@ fun FirstScreen(
         Text(text = "hello")
         Text(text = "hello")
         Text(
-            text = IssueBodyTemplate.createBody(
+            text = IssueBodyBuilder.build(
                 "",
                 "user body",
                 "image url",

@@ -12,7 +12,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NavController
-import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate
+import dev.iaiabot.furuhuru.decorator.IssueBodyBuilder
 
 @Composable
 fun SecondScreen(
@@ -58,7 +58,7 @@ fun SecondScreen(
         Text(text = "second")
         Text(text = "second")
         Text(
-            text = IssueBodyTemplate.createBody(
+            text = IssueBodyBuilder.build(
                 "",
                 "user body",
                 "image url",

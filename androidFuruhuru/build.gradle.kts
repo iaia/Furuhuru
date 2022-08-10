@@ -11,6 +11,7 @@ android {
             isMinifyEnabled = false
         }
     }
+
     buildFeatures {
         compose = true
     }
