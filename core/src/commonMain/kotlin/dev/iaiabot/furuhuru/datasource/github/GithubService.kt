@@ -1,6 +1,8 @@
 package dev.iaiabot.furuhuru.datasource.github
 
 import dev.iaiabot.furuhuru.datasource.github.request.Content
+import dev.iaiabot.furuhuru.datasource.github.response.ContentResponse
+import dev.iaiabot.furuhuru.datasource.github.response.IssueResponse
 import dev.iaiabot.furuhuru.entity.ContentImageUrls
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -46,7 +48,7 @@ internal class GithubService(
         owner: String,
         repo: String,
         issue: dev.iaiabot.furuhuru.datasource.github.request.Issue
-    ): dev.iaiabot.furuhuru.datasource.github.response.IssueResponse {
+    ): IssueResponse {
         val response = client.post("repos/${owner}/${repo}/issues") {
             setBody(issue)
         }
@@ -68,7 +70,7 @@ internal class GithubService(
             val errorBody = response.body<String?>()
             throw Exception(errorBody)
         }
-        val body: dev.iaiabot.furuhuru.datasource.github.response.ContentResponse = response.body()
+        val body = response.body<ContentResponse>()
         return ContentImageUrls(
             body.content.htmlUrl,
             body.content.downloadUrl,
