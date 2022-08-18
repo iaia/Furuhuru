@@ -1,11 +1,20 @@
 package dev.iaiabot.furuhuru.datasource.local
 
-internal actual class UserDataSourceImpl : UserDataSource {
+import platform.Foundation.NSUserDefaults
+
+internal actual class UserDataSourceImpl(
+    private val userDefaults: NSUserDefaults,
+) : UserDataSource {
+
+    companion object {
+        private const val USERNAME = "username"
+    }
+
     override fun getUserName(): String {
-        TODO("Not yet implemented")
+        return userDefaults.objectForKey(USERNAME) as? String ?: ""
     }
 
     override fun saveUserName(newUserName: String) {
-        TODO("Not yet implemented")
+        userDefaults.setObject(newUserName, USERNAME)
     }
 }
