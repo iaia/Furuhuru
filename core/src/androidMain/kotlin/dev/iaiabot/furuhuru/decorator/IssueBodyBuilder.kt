@@ -1,7 +1,7 @@
 package dev.iaiabot.furuhuru.decorator
 
 import android.os.Build
-import dev.iaiabot.furuhuru.BuildConfig
+import dev.iaiabot.furuhuru.BuildKonfig
 import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.APP_NAME
 import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.APP_VERSION
 import dev.iaiabot.furuhuru.decorator.IssueBodyTemplate.DEVICE
@@ -43,7 +43,7 @@ actual object IssueBodyBuilder {
         body = body.replace(DEVICE, Build.MANUFACTURER + " " + Build.MODEL)
         body = body.replace(DEVICE_OS, Build.VERSION.RELEASE)
 
-        body = body.replace(FURUHURU_VERSION_NAME, BuildConfig.FURUHURU_VERSION)
+        body = body.replace(FURUHURU_VERSION_NAME, BuildKonfig.FURUHURU_VERSION)
 
         body = body.replace(APP_NAME, applicationInfo.name ?: "unknown app name")
 

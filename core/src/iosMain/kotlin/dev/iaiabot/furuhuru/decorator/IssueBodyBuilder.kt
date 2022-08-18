@@ -1,5 +1,6 @@
 package dev.iaiabot.furuhuru.decorator
 
+import dev.iaiabot.furuhuru.BuildKonfig
 import dev.iaiabot.furuhuru.entity.ApplicationInfo
 import platform.UIKit.UIDevice
 
@@ -40,7 +41,7 @@ actual object IssueBodyBuilder {
             UIDevice.currentDevice.systemVersion + " " + UIDevice.currentDevice.systemVersion
         )
 
-        // body = body.replace(IssueBodyTemplate.FURUHURU_VERSION_NAME, BuildConfig.FURUHURU_VERSION)
+        body = body.replace(IssueBodyTemplate.FURUHURU_VERSION_NAME, BuildKonfig.FURUHURU_VERSION)
 
         body = body.replace(IssueBodyTemplate.APP_NAME, applicationInfo.name ?: "unknown app name")
 
