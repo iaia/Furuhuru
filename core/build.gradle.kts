@@ -1,7 +1,10 @@
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version "1.7.10"
     id("com.android.library")
+    id("com.codingfeline.buildkonfig")
 }
 
 apply(from = "${rootProject.projectDir}/versions.gradle.kts")
@@ -82,11 +85,14 @@ android {
         minSdk = 21
         targetSdk = 32
 
-        val furuhuru_version: String by project
-        buildConfigField("String", "FURUHURU_VERSION", "\"${furuhuru_version}\"")
     }
+}
 
-    buildFeatures {
-        buildConfig = true
+buildkonfig {
+    packageName = "dev.iaiabot.furuhuru"
+
+    defaultConfigs {
+        val furuhuru_version: String by project
+        buildConfigField(STRING, "FURUHURU_VERSION", "\"${furuhuru_version}\"")
     }
 }
