@@ -15,13 +15,13 @@ jobs:
             mkdir ~/.gradle
             echo $KEYS_PROPERTIES | base64 -d > keys.properties
             echo $SIGNING_GRADLE_PROPERTIES | base64 -d >> gradle.properties
-            echo $GNUPG_SECRING | base64 -d > furufuru/secring.gpg
+            echo $GNUPG_SECRING | base64 -d > secring.gpg
       - persist_to_workspace:
           root: .
           paths:
             - keys.properties
             - gradle.properties
-            - furufuru/secring.gpg
+            - secring.gpg
 
   run_test:
     executor:
