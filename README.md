@@ -1,0 +1,4 @@
+# Furuhuru
+# License
+
+MIT
