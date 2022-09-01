@@ -1,0 +1,76 @@
+apply plugin: "signing"
+apply plugin: "maven-publish"
+
+signing {
+    sign publishing.publications
+}
+
+apply(from = "${rootProject.projectDir}/versions.gradle.kts")
+
+group = $furuhuru_group_name
+version = $furuhuru_version
+
+task javadocJar(type: Jar) {
+    archiveClassifier.set("javadoc")
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set("sources")
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+afterEvaluate {
+    publishing {
+        repositories {
+            maven {
+                url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                credentials {
+                    username = ossrhUsername
+                    password = ossrhPassword
+                }
+            }
+        }
+
+        publications {
+            release(MavenPublication) {
+                groupId = PUBLISH_GROUP_ID
+                artifactId = PUBLISH_ARTIFACT_ID
+                version = PUBLISH_VERSION
+
+                from components.java
+                artifact javadocJar
+                artifact sourcesJar
+
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Make an issue on github easily just by shaking.'
+                    url = "https://github.com/iaia/Furuhuru"
+                    licenses {
+                        license {
+                            name = "MIT"
+                            url = "https://opensource.org/licenses/MIT"
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = "iaia"
+                            name = "iaia"
+                            email = "iaia72160@gmail.com"
+                        }
+                    }
+                    scm {
+                        connection = "scm:git:github.com/iaia/Furuhuru.git"
+                        developerConnection = "scm:git:ssh://github.com/iaia/Furuhuru.git"
+                        url = "https://github.com/iaia/Furuhuru"
+                    }
+                }
+            }
+        }
+    }
+}

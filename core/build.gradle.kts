@@ -7,7 +7,7 @@ plugins {
     id("com.codingfeline.buildkonfig")
 }
 
-apply(from = "${rootProject.projectDir}/versions.gradle.kts")
+val PUBLISH_ARTIFACT_ID: String = "core"
 
 kotlin {
     android()
@@ -96,3 +96,5 @@ buildkonfig {
         buildConfigField(STRING, "FURUHURU_VERSION", "\"${furuhuru_version}\"")
     }
 }
+
+apply(from = "${rootProject.projectDir}/scripts/publish-module.gradle")
