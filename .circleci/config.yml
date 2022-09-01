@@ -61,6 +61,7 @@ workflows:
   pull_request_workflow:
     jobs:
       - prepare:
+          context: maven-secret
           filters:
             branches:
               ignore:
