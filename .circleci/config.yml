@@ -1,0 +1,88 @@
+version: 2.1
+
+orbs:
+  android: circleci/android@1.0.3
+
+jobs:
+  prepare:
+    executor:
+      name: android/android-machine
+    steps:
+      - checkout
+      - run:
+          name: Write setting file
+          command: |
+            mkdir ~/.gradle
+            echo $KEYS_PROPERTIES | base64 -d > keys.properties
+            echo $SIGNING_GRADLE_PROPERTIES | base64 -d >> gradle.properties
+            echo $GNUPG_SECRING | base64 -d > furufuru/secring.gpg
+      - persist_to_workspace:
+          root: .
+          paths:
+            - keys.properties
+            - gradle.properties
+            - furufuru/secring.gpg
+
+  run_test:
+    executor:
+      name: android/android-machine
+    steps:
+      - checkout
+      - android/restore-gradle-cache:
+          cache-prefix: test-gradle-v1
+      - android/restore-build-cache:
+          cache-prefix: test-build-v1
+      - android/run-tests:
+          test-command: ./gradlew --gradle-user-home ~/.gradle testDebugUnitTest
+      - android/save-gradle-cache:
+          cache-prefix: test-gradle-v1
+      - android/save-build-cache:
+          cache-prefix: test-build-v1
+
+  release:
+    executor:
+      name: android/android-machine
+    steps:
+      - checkout
+      - android/restore-gradle-cache:
+          cache-prefix: release-gradle-v1
+      - android/restore-build-cache:
+          cache-prefix: release-build-v1
+      - run:
+          name: Release to maven repository
+          command: |
+            ./gradlew publishReleasePublicationToMavenRepository
+      - android/save-gradle-cache:
+          cache-prefix: release-gradle-v1
+      - android/save-build-cache:
+          cache-prefix: release-build-v1
+
+workflows:
+  pull_request_workflow:
+    jobs:
+      - prepare:
+          filters:
+            branches:
+              ignore:
+                - master
+      - run_test:
+          requires:
+            - prepare
+
+  release_workflow:
+    jobs:
+      - prepare:
+          filters:
+            branches:
+              only:
+                - master
+      - run_test:
+          requires:
+            - prepare
+      - hold:
+          type: approval
+          requires:
+            - prepare
+      - release:
+          requires:
+            - hold
