@@ -100,4 +100,4 @@ buildkonfig {
     }
 }
 
-apply(from = "${rootProject.projectDir}/scripts/publish-module.gradle")
+// apply(from = "${rootProject.projectDir}/scripts/publish-module.gradle")

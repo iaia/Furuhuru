@@ -62,4 +62,4 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }
 
-apply(from = "${rootProject.projectDir}/scripts/publish-module.gradle")
+// apply(from = "${rootProject.projectDir}/scripts/publish-module.gradle")
