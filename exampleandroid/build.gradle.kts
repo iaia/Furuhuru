@@ -42,6 +42,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    namespace = "dev.iaiabot.furuhuru.exampleandroid"
 }
 
 dependencies {
