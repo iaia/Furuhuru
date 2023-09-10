@@ -89,7 +89,7 @@ android {
 }
 
 apply(from = "${rootProject.projectDir}/versions.gradle.kts")
-val furufuru_version by extra("furufuru_version")
+val furuhuru_version by extra("furuhuru_version")
 
 buildkonfig {
     packageName = "dev.iaiabot.furuhuru"

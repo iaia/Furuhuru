@@ -3,7 +3,7 @@ plugins {
     kotlin("android")
 }
 
-val PUBLISH_ARTIFACT_ID: String = "android-furufuru"
+val PUBLISH_ARTIFACT_ID: String = "android-furuhuru"
 
 android {
     compileSdk = 34
