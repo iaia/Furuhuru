@@ -24,13 +24,13 @@ kotlin {
 
     sourceSets {
         val ktor_version = "2.0.3"
-        val koin_version = "3.2.0"
+        val koin_version = "3.4.3"
 
         val commonMain by getting {
 
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
                 implementation("io.ktor:ktor-client-core:$ktor_version")
                 implementation("io.ktor:ktor-client-cio:$ktor_version")
@@ -79,13 +79,13 @@ kotlin {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 34
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
-
+        targetSdk = 34
     }
+    namespace = "dev.iaiabot.furuhuru"
 }
 
 apply(from = "${rootProject.projectDir}/versions.gradle.kts")

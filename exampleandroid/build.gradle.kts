@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "dev.iaiabot.furuhuru.exampleandroid"
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -42,6 +42,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    namespace = "dev.iaiabot.furuhuru.exampleandroid"
 }
 
 dependencies {
@@ -50,12 +51,12 @@ dependencies {
     implementation(project(":androidFuruhuru"))
     implementation(project(":core"))
 
-    implementation("androidx.appcompat:appcompat:1.4.2")
-    implementation("androidx.core:core-ktx:1.8.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.core:core-ktx:1.12.0")
 
-    val compose = "1.1.1"
+    val compose = "1.5.1"
     implementation("androidx.compose.ui:ui:$compose")
-    implementation("androidx.activity:activity-compose:1.5.1")
+    implementation("androidx.activity:activity-compose:1.7.2")
     implementation("androidx.compose.ui:ui-tooling:$compose")
     implementation("androidx.compose.foundation:foundation:$compose")
     implementation("androidx.compose.material:material:$compose")
@@ -65,11 +66,11 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-rxjava2:$compose")
 
     // Jetpack Compose Integration
-    implementation("androidx.navigation:navigation-compose:2.5.1")
+    implementation("androidx.navigation:navigation-compose:2.7.2")
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    implementation("androidx.browser:browser:1.4.0")
+    implementation("androidx.browser:browser:1.6.0")
 }
